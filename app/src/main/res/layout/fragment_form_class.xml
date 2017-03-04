@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_vertical_margin">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="6dp"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="40dp">
+
+            <ImageView
+                android:id="@+id/formClassImageName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/feather" />
+
+            <TextView
+                android:id="@+id/formClassTxtName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/formClassImageName"
+                android:text="@string/formClassTxtName"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/formClassEdtName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/formClassImageName"
+                android:layout_marginBottom="10dp"
+                android:contentDescription="@string/app_name"
+                android:inputType="text"
+                android:labelFor="@+id/formClassEdtName" />
+
+            <ImageView
+                android:id="@+id/formClassImageWeapon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/formClassEdtName"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/wrench" />
+
+            <TextView
+                android:id="@+id/formClassTxtWeapon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/formClassEdtName"
+                android:layout_toEndOf="@id/formClassImageWeapon"
+                android:text="@string/formClassTxtWeapon"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/formClassEdtWeapon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/formClassImageWeapon"
+                android:layout_marginBottom="10dp"
+                android:contentDescription="@string/app_name"
+                android:inputType="text"
+                android:labelFor="@+id/formClassEdtWeapon" />
+
+            <RadioGroup
+                android:id="@+id/formClassRdg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/formClassEdtWeapon"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rdBtnDPS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/rdBtnDPS" />
+
+                <RadioButton
+                    android:id="@+id/rdBtnTANK"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rdBtnTANK" />
+
+                <RadioButton
+                    android:id="@+id/rdBtnHEALER"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rdBtnHEALER" />
+            </RadioGroup>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/formClassBtnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp"
+        android:src="@drawable/ic_account_card_details_white_36dp"
+        app:fabSize="normal" />
+</RelativeLayout>

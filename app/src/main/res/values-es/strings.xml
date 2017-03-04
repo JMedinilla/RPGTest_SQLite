@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RPGTest</string>
+    <string name="adapterClass_txt">Arma:</string>
+    <string name="btnHomeAdventurers">Aventureros</string>
+    <string name="btnHomeClasses">Clases</string>
+    <string name="btnHomeQuests">Misiones</string>
+    <string name="context_delete">Eliminar</string>
+    <string name="context_update">Actualizar</string>
+    <string name="dialogPositiveButton">Cerrar</string>
+    <string name="dialog_alignment_txt">Alineación</string>
+    <string name="dialog_class_txt">Clase</string>
+    <string name="dialog_name_txt">Nombre</string>
+    <string name="dialog_race_txt">Raza</string>
+    <string name="dialog_role_txt">Rol</string>
+    <string name="dialog_weapon_txt">Arma</string>
+    <string name="errorDelete">Error al eliminar</string>
+    <string name="errorInsert">Error al insertar</string>
+    <string name="errorUpdate">Error al actualizar</string>
+    <string name="formAdventurer_txtAlignment">Alineación:</string>
+    <string name="formAdventurer_txtClass">Clase:</string>
+    <string name="formAdventurer_txtName">Nombre:</string>
+    <string name="formAdventurer_txtRace">Raza:</string>
+    <string name="formClassTxtName">Nombre</string>
+    <string name="formClassTxtWeapon">Arma</string>
+    <string name="noClasses">No hay clases disponibles</string>
+    <string name="successDelete">Eliminado correctamente</string>
+    <string name="successInsert">Insertado correctamente</string>
+    <string name="successUpdate">Actualizado correctamente</string>
+    <string name="dialog_dex_txt">DEX</string>
+    <string name="dialog_int_txt">INT</string>
+    <string name="dialog_str_txt">STR</string>
+    <string name="formAdventurer_txtDex" translatable="false">DEX</string>
+    <string name="formAdventurer_txtInt" translatable="false">INT</string>
+    <string name="formAdventurer_edtDex">0</string>
+    <string name="formAdventurer_edtInt">0</string>
+    <string name="formAdventurer_edtStr">0</string>
+    <string name="formAdventurer_txtStr" translatable="false">STR</string>
+    <string name="rdBtnDPS" translatable="false">DPS</string>
+    <string name="rdBtnHEALER">HEALER</string>
+    <string name="rdBtnTANK">TANK</string>
+</resources>
