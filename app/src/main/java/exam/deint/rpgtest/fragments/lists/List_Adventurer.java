@@ -28,12 +28,12 @@ import exam.deint.rpgtest.pojos.Pojo_Adventurer;
 import exam.deint.rpgtest.presenters.PresenterAdventurerImpl;
 
 public class List_Adventurer extends Fragment implements PresenterAdventurer.View {
-    ListAdventurerInterface listAdventureInterface;
-    PresenterAdventurerImpl presenterAdventurer;
-    Adapter_Adventurer adapterAdventurer;
+    private ListAdventurerInterface listAdventureInterface;
+    private PresenterAdventurerImpl presenterAdventurer;
+    private Adapter_Adventurer adapterAdventurer;
 
-    ListView listView;
-    FloatingActionButton btnForm;
+    private ListView listView;
+    private FloatingActionButton btnForm;
 
     boolean calledFromUpdate;
 
@@ -93,23 +93,23 @@ public class List_Adventurer extends Fragment implements PresenterAdventurer.Vie
         View view = inflater.inflate(R.layout.dialog_adventurer, null);
         builder.setView(view);
 
-        TextView txtName = (TextView) view.findViewById(R.id.dialog_name);
+        TextView txtName = view.findViewById(R.id.dialog_name);
         txtName.setText(dialogAdventurer.getAd_name());
-        TextView txtRace = (TextView) view.findViewById(R.id.dialog_race);
+        TextView txtRace = view.findViewById(R.id.dialog_race);
         txtRace.setText(dialogAdventurer.getAd_race());
-        TextView txtAlignment = (TextView) view.findViewById(R.id.dialog_alignment);
+        TextView txtAlignment = view.findViewById(R.id.dialog_alignment);
         txtAlignment.setText(dialogAdventurer.getAd_alignment());
-        TextView txtClass = (TextView) view.findViewById(R.id.dialog_class);
+        TextView txtClass = view.findViewById(R.id.dialog_class);
         txtClass.setText(dialogAdventurer.getAd_class());
-        TextView txtWeapon = (TextView) view.findViewById(R.id.dialog_weapon);
+        TextView txtWeapon = view.findViewById(R.id.dialog_weapon);
         txtWeapon.setText(dialogAdventurer.getAd_weapon());
-        TextView txtRole = (TextView) view.findViewById(R.id.dialog_role);
+        TextView txtRole = view.findViewById(R.id.dialog_role);
         txtRole.setText(dialogAdventurer.getAd_role());
-        TextView txtSTR = (TextView) view.findViewById(R.id.dialog_str);
+        TextView txtSTR = view.findViewById(R.id.dialog_str);
         txtSTR.setText(String.valueOf(dialogAdventurer.getAd_str()));
-        TextView txtDEX = (TextView) view.findViewById(R.id.dialog_dex);
+        TextView txtDEX = view.findViewById(R.id.dialog_dex);
         txtDEX.setText(String.valueOf(dialogAdventurer.getAd_dex()));
-        TextView txtINT = (TextView) view.findViewById(R.id.dialog_int);
+        TextView txtINT = view.findViewById(R.id.dialog_int);
         txtINT.setText(String.valueOf(dialogAdventurer.getAd_int()));
 
         builder.setPositiveButton(R.string.dialogPositiveButton, new DialogInterface.OnClickListener() {
@@ -148,8 +148,8 @@ public class List_Adventurer extends Fragment implements PresenterAdventurer.Vie
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_adventurer, container, false);
-        listView = (ListView) view.findViewById(R.id.listAdventurer);
-        btnForm = (FloatingActionButton) view.findViewById(R.id.listAdventurerButton);
+        listView = view.findViewById(R.id.listAdventurer);
+        btnForm = view.findViewById(R.id.listAdventurerButton);
         btnForm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

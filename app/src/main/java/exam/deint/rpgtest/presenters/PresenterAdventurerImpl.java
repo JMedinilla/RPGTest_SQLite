@@ -1,10 +1,8 @@
 package exam.deint.rpgtest.presenters;
 
-import android.os.AsyncTask;
-
 import java.util.List;
 
-import exam.deint.rpgtest.database.ManageAdventurer;
+import exam.deint.rpgtest.async_aux.AsyncAdventurer;
 import exam.deint.rpgtest.interfaces.PresenterAdventurer;
 import exam.deint.rpgtest.pojos.AdapterPojo_Adventurer;
 import exam.deint.rpgtest.pojos.DialogAdventurer;
@@ -19,97 +17,61 @@ public class PresenterAdventurerImpl implements PresenterAdventurer {
 
     @Override
     public void implSelectAdventurers() {
-        new AsyncTask<Void, Void, List<AdapterPojo_Adventurer>>() {
-            @Override
-            protected List<AdapterPojo_Adventurer> doInBackground(Void... voids) {
-                return ManageAdventurer.getInstance().selectAllAdventurer();
-            }
-
-            @Override
-            protected void onPostExecute(List<AdapterPojo_Adventurer> list) {
-                super.onPostExecute(list);
-                view.viewSelectAllResponse(list);
-            }
-        }.execute();
+        AsyncAdventurer.selectAdventurers(this);
     }
 
     @Override
-    public void implSelectAdventurer(final int id) {
-        new AsyncTask<Void, Void, Pojo_Adventurer>() {
-            @Override
-            protected Pojo_Adventurer doInBackground(Void... voids) {
-                return ManageAdventurer.getInstance().selectAdventurer(id);
-            }
-
-            @Override
-            protected void onPostExecute(Pojo_Adventurer pojoAdventurer) {
-                super.onPostExecute(pojoAdventurer);
-                view.viewSelectResponse(pojoAdventurer);
-            }
-        }.execute();
+    public void implSelectAdventurersResponse(List<AdapterPojo_Adventurer> list) {
+        view.viewSelectAllResponse(list);
     }
 
     @Override
-    public void implInsertAdventurer(final Pojo_Adventurer pojoAdventurer) {
-        new AsyncTask<Void, Void, Long>() {
-            @Override
-            protected Long doInBackground(Void... voids) {
-                return ManageAdventurer.getInstance().insertAdventurer(pojoAdventurer);
-            }
-
-            @Override
-            protected void onPostExecute(Long aLong) {
-                super.onPostExecute(aLong);
-                view.viewInsertAdventurerResponse(aLong);
-            }
-        }.execute();
+    public void implSelectAdventurer(int id) {
+        AsyncAdventurer.selectAventurer(this, id);
     }
 
     @Override
-    public void implUpdateAdventurer(final Pojo_Adventurer pojoAdventurer) {
-        new AsyncTask<Void, Void, Integer>() {
-            @Override
-            protected Integer doInBackground(Void... voids) {
-                return ManageAdventurer.getInstance().updateAdventurer(pojoAdventurer);
-            }
-
-            @Override
-            protected void onPostExecute(Integer integer) {
-                super.onPostExecute(integer);
-                view.viewUpdateAdventurerResponse(integer);
-            }
-        }.execute();
+    public void implSelectAdventurerResponse(Pojo_Adventurer pojoAdventurer) {
+        view.viewSelectResponse(pojoAdventurer);
     }
 
     @Override
-    public void implDeleteAdventurer(final int id) {
-        new AsyncTask<Void, Void, Integer>() {
-            @Override
-            protected Integer doInBackground(Void... voids) {
-                return ManageAdventurer.getInstance().deleteAdventurer(id);
-            }
-
-            @Override
-            protected void onPostExecute(Integer integer) {
-                super.onPostExecute(integer);
-                view.viewDeleteAdventurerResponse(integer);
-            }
-        }.execute();
+    public void implInsertAdventurer(Pojo_Adventurer pojoAdventurer) {
+        AsyncAdventurer.insertAdventurer(this, pojoAdventurer);
     }
 
     @Override
-    public void implSelectAdventurerClass(final int id) {
-        new AsyncTask<Void, Void, DialogAdventurer>() {
-            @Override
-            protected DialogAdventurer doInBackground(Void... voids) {
-                return ManageAdventurer.getInstance().selectAdventurerClass(id);
-            }
+    public void implInsertAdventurerResponse(Long aLong) {
+        view.viewInsertAdventurerResponse(aLong);
+    }
 
-            @Override
-            protected void onPostExecute(DialogAdventurer dialogAdventurer) {
-                super.onPostExecute(dialogAdventurer);
-                view.viewSelectAdventurerClassResponse(dialogAdventurer);
-            }
-        }.execute();
+    @Override
+    public void implUpdateAdventurer(Pojo_Adventurer pojoAdventurer) {
+        AsyncAdventurer.updateAdventurer(this, pojoAdventurer);
+    }
+
+    @Override
+    public void implUpdateAdventurerResponse(Integer integer) {
+        view.viewUpdateAdventurerResponse(integer);
+    }
+
+    @Override
+    public void implDeleteAdventurer(int id) {
+        AsyncAdventurer.deleteAdventurer(this, id);
+    }
+
+    @Override
+    public void implDeleteAdventurerResponse(Integer integer) {
+        view.viewDeleteAdventurerResponse(integer);
+    }
+
+    @Override
+    public void implSelectAdventurerClass(int id) {
+        AsyncAdventurer.selectAdventurerClass(this, id);
+    }
+
+    @Override
+    public void implSelectAdventurerClassResponse(DialogAdventurer dialogAdventurer) {
+        view.viewSelectAdventurerClassResponse(dialogAdventurer);
     }
 }

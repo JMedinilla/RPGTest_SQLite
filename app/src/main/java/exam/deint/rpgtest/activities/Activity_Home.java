@@ -20,19 +20,18 @@ public class Activity_Home extends AppCompatActivity implements
         Form_Adventurer.FormAdventurerInterface, Form_Class.FormClassInterface,
         Home.HomeInterface {
 
-    static FrameLayout activity_home;
+    private static FrameLayout activity_home;
 
-    Home home;
-    List_Class list_class;
-    List_Adventurer list_adventurer;
-    Form_Class form_class;
-    Form_Adventurer form_adventurer;
+    private Home home;
+    private List_Class list_class;
+    private List_Adventurer list_adventurer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        activity_home = (FrameLayout) findViewById(R.id.activity_home);
+
+        activity_home = findViewById(R.id.activity_home);
 
         home = new Home();
         list_class = new List_Class();
@@ -57,7 +56,7 @@ public class Activity_Home extends AppCompatActivity implements
 
     @Override
     public void fromListAdventurerToForm(Pojo_Adventurer pojoAdventurer) {
-        form_adventurer = new Form_Adventurer();
+        Form_Adventurer form_adventurer = new Form_Adventurer();
         Bundle bundle = new Bundle();
         bundle.putParcelable("pojoAdventurer", pojoAdventurer);
         form_adventurer.setArguments(bundle);
@@ -70,7 +69,7 @@ public class Activity_Home extends AppCompatActivity implements
 
     @Override
     public void fromListClassToForm(Pojo_Class pojoClass) {
-        form_class = new Form_Class();
+        Form_Class form_class = new Form_Class();
         Bundle bundle = new Bundle();
         bundle.putParcelable("pojoClass", pojoClass);
         form_class.setArguments(bundle);

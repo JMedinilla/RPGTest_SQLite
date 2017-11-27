@@ -41,12 +41,12 @@ public class Adapter_Adventurer extends ArrayAdapter<AdapterPojo_Adventurer> {
         if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.adapter_adventurer, parent, false);
             adventurerHolder = new AdventurerHolder();
-            adventurerHolder.mName = (TextView) view.findViewById(R.id.adapterAdventurer_name);
-            adventurerHolder.mRace = (TextView) view.findViewById(R.id.adapterAdventurer_race);
-            adventurerHolder.mClass = (TextView) view.findViewById(R.id.adapterAdventurer_class);
-            adventurerHolder.mStr = (TextView) view.findViewById(R.id.adapterAdventurer_str);
-            adventurerHolder.mDex = (TextView) view.findViewById(R.id.adapterAdventurer_dex);
-            adventurerHolder.mInt = (TextView) view.findViewById(R.id.adapterAdventurer_int);
+            adventurerHolder.mName = view.findViewById(R.id.adapterAdventurer_name);
+            adventurerHolder.mRace = view.findViewById(R.id.adapterAdventurer_race);
+            adventurerHolder.mClass = view.findViewById(R.id.adapterAdventurer_class);
+            adventurerHolder.mStr = view.findViewById(R.id.adapterAdventurer_str);
+            adventurerHolder.mDex = view.findViewById(R.id.adapterAdventurer_dex);
+            adventurerHolder.mInt = view.findViewById(R.id.adapterAdventurer_int);
             view.setTag(adventurerHolder);
         } else {
             adventurerHolder = (AdventurerHolder) view.getTag();

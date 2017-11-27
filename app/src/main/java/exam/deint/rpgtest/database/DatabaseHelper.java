@@ -2,7 +2,6 @@ package exam.deint.rpgtest.database;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Build;
 
 import exam.deint.rpgtest.RPGTestApplication;
 
@@ -53,16 +52,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onOpen(SQLiteDatabase db) {
         super.onOpen(db);
         if (!db.isReadOnly()) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                db.setForeignKeyConstraintsEnabled(true);
-            } else {
-                db.execSQL("PRAGMA foreign_keys = ON");
-            }
+            db.setForeignKeyConstraintsEnabled(true);
         }
     }
 
-    public SQLiteDatabase open() {
-        return getWritableDatabase();
+    public void open() {
+        getWritableDatabase();
     }
 
     SQLiteDatabase openDatabase() {

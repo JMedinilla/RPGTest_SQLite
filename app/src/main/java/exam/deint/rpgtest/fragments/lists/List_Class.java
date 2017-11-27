@@ -23,12 +23,12 @@ import exam.deint.rpgtest.pojos.Pojo_Class;
 import exam.deint.rpgtest.presenters.PresenterClassImpl;
 
 public class List_Class extends Fragment implements PresenterClass.View {
-    ListClassInterface listClassInterface;
-    PresenterClassImpl presenterClass;
-    Adapter_Class adapterClass;
+    private ListClassInterface listClassInterface;
+    private PresenterClassImpl presenterClass;
+    private Adapter_Class adapterClass;
 
-    ListView listView;
-    FloatingActionButton btnForm;
+    private ListView listView;
+    private FloatingActionButton btnForm;
 
     @Override
     public void viewMessage(String message) {
@@ -93,8 +93,8 @@ public class List_Class extends Fragment implements PresenterClass.View {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_class, container, false);
-        listView = (ListView) view.findViewById(R.id.listClass);
-        btnForm = (FloatingActionButton) view.findViewById(R.id.listClassButton);
+        listView = view.findViewById(R.id.listClass);
+        btnForm = view.findViewById(R.id.listClassButton);
         btnForm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

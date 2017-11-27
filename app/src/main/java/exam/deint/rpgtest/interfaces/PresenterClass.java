@@ -13,6 +13,14 @@ public interface PresenterClass {
 
     void implDeleteClass(Pojo_Class quest);
 
+    void implSelectClassesResponse(List<Pojo_Class> list);
+
+    void implInsertClassResponse(Long aLong);
+
+    void implUpdateClassResponse(Integer integer);
+
+    void implDeleteClassResponse(Integer integer);
+
     interface View {
         void viewMessage(String message);
 

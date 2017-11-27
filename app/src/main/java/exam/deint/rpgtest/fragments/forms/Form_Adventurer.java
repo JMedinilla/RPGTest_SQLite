@@ -21,19 +21,19 @@ import exam.deint.rpgtest.pojos.Pojo_Adventurer;
 import exam.deint.rpgtest.pojos.Spinner_Class;
 
 public class Form_Adventurer extends Fragment {
-    FormAdventurerInterface formAdventureInterface;
+    private FormAdventurerInterface formAdventureInterface;
 
-    EditText edtName;
-    EditText edtStr;
-    EditText edtDex;
-    EditText edtInt;
-    Spinner spinRace;
-    Spinner spinAlignment;
-    Spinner spinClass;
-    FloatingActionButton btnSave;
+    private EditText edtName;
+    private EditText edtStr;
+    private EditText edtDex;
+    private EditText edtInt;
+    private Spinner spinRace;
+    private Spinner spinAlignment;
+    private Spinner spinClass;
+    private FloatingActionButton btnSave;
 
-    boolean update;
-    Pojo_Adventurer pojoUpdate;
+    private boolean update;
+    private Pojo_Adventurer pojoUpdate;
 
     public interface FormAdventurerInterface {
         void fromFormAdventurerToList(Pojo_Adventurer pojoAdventurer, boolean update);
@@ -51,14 +51,14 @@ public class Form_Adventurer extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_form_adventurer, container, false);
 
-        edtName = (EditText) view.findViewById(R.id.formAdventurer_edtName);
-        edtStr = (EditText) view.findViewById(R.id.formAdventurer_edtStr);
-        edtDex = (EditText) view.findViewById(R.id.formAdventurer_edtDex);
-        edtInt = (EditText) view.findViewById(R.id.formAdventurer_edtInt);
-        spinRace = (Spinner) view.findViewById(R.id.formAdventurer_spinRace);
-        spinAlignment = (Spinner) view.findViewById(R.id.formAdventurer_spinAlignment);
-        spinClass = (Spinner) view.findViewById(R.id.formAdventurer_spinClass);
-        btnSave = (FloatingActionButton) view.findViewById(R.id.formAdventurer_btnSave);
+        edtName = view.findViewById(R.id.formAdventurer_edtName);
+        edtStr = view.findViewById(R.id.formAdventurer_edtStr);
+        edtDex = view.findViewById(R.id.formAdventurer_edtDex);
+        edtInt = view.findViewById(R.id.formAdventurer_edtInt);
+        spinRace = view.findViewById(R.id.formAdventurer_spinRace);
+        spinAlignment = view.findViewById(R.id.formAdventurer_spinAlignment);
+        spinClass = view.findViewById(R.id.formAdventurer_spinClass);
+        btnSave = view.findViewById(R.id.formAdventurer_btnSave);
 
         String[] races = new String[]{
                 Pojo_Adventurer.ADVENTURER_RACE_HUMAN, Pojo_Adventurer.ADVENTURER_RACE_ORC,

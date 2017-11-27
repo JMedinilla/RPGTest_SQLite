@@ -42,9 +42,9 @@ public class Adapter_Class extends ArrayAdapter<Pojo_Class> {
         if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.adapter_class, parent, false);
             classHolder = new ClassHolder();
-            classHolder.name = (TextView) view.findViewById(R.id.adapterClass_name);
-            classHolder.role = (TextView) view.findViewById(R.id.adapterClass_role);
-            classHolder.weapon = (TextView) view.findViewById(R.id.adapterClass_weapon);
+            classHolder.name = view.findViewById(R.id.adapterClass_name);
+            classHolder.role = view.findViewById(R.id.adapterClass_role);
+            classHolder.weapon = view.findViewById(R.id.adapterClass_weapon);
             view.setTag(classHolder);
         } else {
             classHolder = (ClassHolder) view.getTag();

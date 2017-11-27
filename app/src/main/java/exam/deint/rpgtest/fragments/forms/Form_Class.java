@@ -16,15 +16,15 @@ import exam.deint.rpgtest.activities.Activity_Home;
 import exam.deint.rpgtest.pojos.Pojo_Class;
 
 public class Form_Class extends Fragment {
-    FormClassInterface formClassInterface;
+    private FormClassInterface formClassInterface;
 
-    EditText edtName;
-    EditText edtWeapon;
-    RadioGroup rdgRole;
-    FloatingActionButton btnSave;
+    private EditText edtName;
+    private EditText edtWeapon;
+    private RadioGroup rdgRole;
+    private FloatingActionButton btnSave;
 
-    boolean update;
-    Pojo_Class pojoUpdate;
+    private boolean update;
+    private Pojo_Class pojoUpdate;
 
     public interface FormClassInterface {
         void fromFormClassToList(Pojo_Class pojoClass, boolean update);
@@ -42,10 +42,10 @@ public class Form_Class extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_form_class, container, false);
 
-        edtName = (EditText) view.findViewById(R.id.formClassEdtName);
-        edtWeapon = (EditText) view.findViewById(R.id.formClassEdtWeapon);
-        rdgRole = (RadioGroup) view.findViewById(R.id.formClassRdg);
-        btnSave = (FloatingActionButton) view.findViewById(R.id.formClassBtnSave);
+        edtName = view.findViewById(R.id.formClassEdtName);
+        edtWeapon = view.findViewById(R.id.formClassEdtWeapon);
+        rdgRole = view.findViewById(R.id.formClassRdg);
+        btnSave = view.findViewById(R.id.formClassBtnSave);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override

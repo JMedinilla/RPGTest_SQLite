@@ -1,10 +1,8 @@
 package exam.deint.rpgtest.presenters;
 
-import android.os.AsyncTask;
-
 import java.util.List;
 
-import exam.deint.rpgtest.database.ManageClass;
+import exam.deint.rpgtest.async_aux.AsyncClass;
 import exam.deint.rpgtest.interfaces.PresenterClass;
 import exam.deint.rpgtest.pojos.Pojo_Class;
 
@@ -17,66 +15,41 @@ public class PresenterClassImpl implements PresenterClass {
 
     @Override
     public void implSelectClasses() {
-        new AsyncTask<Void, Void, List<Pojo_Class>>() {
-            @Override
-            protected List<Pojo_Class> doInBackground(Void... voids) {
-                return ManageClass.getInstance().selectAllClass();
-            }
-
-            @Override
-            protected void onPostExecute(List<Pojo_Class> list) {
-                super.onPostExecute(list);
-                view.viewSelectAllResponse(list);
-            }
-        }.execute();
+        AsyncClass.selectClasses(this);
     }
 
     @Override
-    public void implInsertClass(final Pojo_Class pojoClass) {
-        new AsyncTask<Void, Void, Long>() {
-
-            @Override
-            protected Long doInBackground(Void... voids) {
-                return ManageClass.getInstance().insertClass(pojoClass);
-            }
-
-            @Override
-            protected void onPostExecute(Long aLong) {
-                super.onPostExecute(aLong);
-                view.viewInsertClassResponse(aLong);
-            }
-        }.execute();
+    public void implSelectClassesResponse(List<Pojo_Class> list) {
+        view.viewSelectAllResponse(list);
     }
 
     @Override
-    public void implUpdateClass(final Pojo_Class pojoClass) {
-        new AsyncTask<Void, Void, Integer>() {
-            @Override
-            protected Integer doInBackground(Void... voids) {
-                return ManageClass.getInstance().updateClass(pojoClass);
-            }
-
-            @Override
-            protected void onPostExecute(Integer integer) {
-                super.onPostExecute(integer);
-                view.viewUpdateClassResponse(integer);
-            }
-        }.execute();
+    public void implInsertClass(Pojo_Class pojoClass) {
+        AsyncClass.insertClass(this, pojoClass);
     }
 
     @Override
-    public void implDeleteClass(final Pojo_Class pojoClass) {
-        new AsyncTask<Void, Void, Integer>() {
-            @Override
-            protected Integer doInBackground(Void... voids) {
-                return ManageClass.getInstance().deleteClass(pojoClass);
-            }
+    public void implInsertClassResponse(Long aLong) {
+        view.viewInsertClassResponse(aLong);
+    }
 
-            @Override
-            protected void onPostExecute(Integer integer) {
-                super.onPostExecute(integer);
-                view.viewDeleteClassResponse(integer);
-            }
-        }.execute();
+    @Override
+    public void implUpdateClass(Pojo_Class pojoClass) {
+        AsyncClass.updateClass(this, pojoClass);
+    }
+
+    @Override
+    public void implUpdateClassResponse(Integer integer) {
+        view.viewUpdateClassResponse(integer);
+    }
+
+    @Override
+    public void implDeleteClass(Pojo_Class pojoClass) {
+        AsyncClass.deleteClass(this, pojoClass);
+    }
+
+    @Override
+    public void implDeleteClassResponse(Integer integer) {
+        view.viewDeleteClassResponse(integer);
     }
 }

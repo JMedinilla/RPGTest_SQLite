@@ -12,10 +12,7 @@ import android.widget.Button;
 import exam.deint.rpgtest.R;
 
 public class Home extends Fragment implements View.OnClickListener {
-    HomeInterface homeInterface;
-
-    Button btnHomeClass;
-    Button btnHomeAdventurer;
+    private HomeInterface homeInterface;
 
     @Override
     public void onClick(View view) {
@@ -39,9 +36,9 @@ public class Home extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        btnHomeClass = (Button) view.findViewById(R.id.btnHomeClasses);
+        Button btnHomeClass = view.findViewById(R.id.btnHomeClasses);
+        Button btnHomeAdventurer = view.findViewById(R.id.btnHomeAdventurers);
         btnHomeClass.setOnClickListener(this);
-        btnHomeAdventurer = (Button) view.findViewById(R.id.btnHomeAdventurers);
         btnHomeAdventurer.setOnClickListener(this);
         return view;
     }

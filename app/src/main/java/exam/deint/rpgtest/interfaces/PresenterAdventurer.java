@@ -19,6 +19,18 @@ public interface PresenterAdventurer {
 
     void implSelectAdventurerClass(int id);
 
+    void implSelectAdventurersResponse(List<AdapterPojo_Adventurer> list);
+
+    void implSelectAdventurerResponse(Pojo_Adventurer pojoAdventurer);
+
+    void implInsertAdventurerResponse(Long aLong);
+
+    void implUpdateAdventurerResponse(Integer integer);
+
+    void implDeleteAdventurerResponse(Integer integer);
+
+    void implSelectAdventurerClassResponse(DialogAdventurer dialogAdventurer);
+
     interface View {
         void viewMessage(String message);
 
