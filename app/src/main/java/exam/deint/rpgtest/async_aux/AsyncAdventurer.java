@@ -5,22 +5,22 @@ import android.os.AsyncTask;
 import java.util.List;
 
 import exam.deint.rpgtest.database.ManageAdventurer;
-import exam.deint.rpgtest.pojos.AdapterPojo_Adventurer;
-import exam.deint.rpgtest.pojos.DialogAdventurer;
-import exam.deint.rpgtest.pojos.Pojo_Adventurer;
+import exam.deint.rpgtest.pojos.Adventurer;
+import exam.deint.rpgtest.pojos.AdventurerForList;
+import exam.deint.rpgtest.pojos.AdventurerWithClass;
 import exam.deint.rpgtest.presenters.PresenterAdventurerImpl;
 
 public class AsyncAdventurer {
 
     public static void selectAdventurers(final PresenterAdventurerImpl presenterAdventurer) {
-        new AsyncTask<Void, Void, List<AdapterPojo_Adventurer>>() {
+        new AsyncTask<Void, Void, List<AdventurerForList>>() {
             @Override
-            protected List<AdapterPojo_Adventurer> doInBackground(Void... voids) {
+            protected List<AdventurerForList> doInBackground(Void... voids) {
                 return ManageAdventurer.getInstance().selectAllAdventurer();
             }
 
             @Override
-            protected void onPostExecute(List<AdapterPojo_Adventurer> list) {
+            protected void onPostExecute(List<AdventurerForList> list) {
                 super.onPostExecute(list);
                 presenterAdventurer.implSelectAdventurersResponse(list);
             }
@@ -28,21 +28,21 @@ public class AsyncAdventurer {
     }
 
     public static void selectAventurer(final PresenterAdventurerImpl presenterAdventurer, final int id) {
-        new AsyncTask<Void, Void, Pojo_Adventurer>() {
+        new AsyncTask<Void, Void, Adventurer>() {
             @Override
-            protected Pojo_Adventurer doInBackground(Void... voids) {
+            protected Adventurer doInBackground(Void... voids) {
                 return ManageAdventurer.getInstance().selectAdventurer(id);
             }
 
             @Override
-            protected void onPostExecute(Pojo_Adventurer pojoAdventurer) {
+            protected void onPostExecute(Adventurer pojoAdventurer) {
                 super.onPostExecute(pojoAdventurer);
                 presenterAdventurer.implSelectAdventurerResponse(pojoAdventurer);
             }
         }.execute();
     }
 
-    public static void insertAdventurer(final PresenterAdventurerImpl presenterAdventurer, final Pojo_Adventurer pojoAdventurer) {
+    public static void insertAdventurer(final PresenterAdventurerImpl presenterAdventurer, final Adventurer pojoAdventurer) {
         new AsyncTask<Void, Void, Long>() {
             @Override
             protected Long doInBackground(Void... voids) {
@@ -57,7 +57,7 @@ public class AsyncAdventurer {
         }.execute();
     }
 
-    public static void updateAdventurer(final PresenterAdventurerImpl presenterAdventurer, final Pojo_Adventurer pojoAdventurer) {
+    public static void updateAdventurer(final PresenterAdventurerImpl presenterAdventurer, final Adventurer pojoAdventurer) {
         new AsyncTask<Void, Void, Integer>() {
             @Override
             protected Integer doInBackground(Void... voids) {
@@ -88,16 +88,16 @@ public class AsyncAdventurer {
     }
 
     public static void selectAdventurerClass(final PresenterAdventurerImpl presenterAdventurer, final int id) {
-        new AsyncTask<Void, Void, DialogAdventurer>() {
+        new AsyncTask<Void, Void, AdventurerWithClass>() {
             @Override
-            protected DialogAdventurer doInBackground(Void... voids) {
+            protected AdventurerWithClass doInBackground(Void... voids) {
                 return ManageAdventurer.getInstance().selectAdventurerClass(id);
             }
 
             @Override
-            protected void onPostExecute(DialogAdventurer dialogAdventurer) {
-                super.onPostExecute(dialogAdventurer);
-                presenterAdventurer.implSelectAdventurerClassResponse(dialogAdventurer);
+            protected void onPostExecute(AdventurerWithClass adventurerWithClass) {
+                super.onPostExecute(adventurerWithClass);
+                presenterAdventurer.implSelectAdventurerClassResponse(adventurerWithClass);
             }
         }.execute();
     }

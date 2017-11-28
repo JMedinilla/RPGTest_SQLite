@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardElevation="6dp"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    app:contentPadding="8dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,8 +28,10 @@
                 android:id="@+id/adapterAdventurer_race"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:layout_marginStart="20dp"
                 android:layout_toEndOf="@+id/adapterAdventurer_name"
+                android:layout_toRightOf="@+id/adapterAdventurer_name"
                 android:textColor="@color/colorBlack"
                 android:textSize="16sp" />
         </RelativeLayout>
@@ -42,7 +45,7 @@
             android:layout_marginBottom="6dp"
             android:layout_marginTop="6dp"
             android:textColor="@color/colorBlack"
-            android:textSize="16sp" />
+            android:textSize="20sp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -55,6 +58,7 @@
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/sword_cross" />
 
@@ -63,6 +67,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignEnd="@+id/adapterAdventurer_srtImage"
+                android:layout_alignLeft="@+id/adapterAdventurer_srtImage"
+                android:layout_alignRight="@+id/adapterAdventurer_srtImage"
                 android:layout_alignStart="@+id/adapterAdventurer_srtImage"
                 android:layout_below="@+id/adapterAdventurer_srtImage"
                 android:gravity="center"
@@ -74,7 +80,9 @@
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
                 android:layout_toEndOf="@+id/adapterAdventurer_srtImage"
+                android:layout_toRightOf="@+id/adapterAdventurer_srtImage"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/sword" />
 
@@ -83,6 +91,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignEnd="@+id/adapterAdventurer_dexImage"
+                android:layout_alignLeft="@+id/adapterAdventurer_dexImage"
+                android:layout_alignRight="@+id/adapterAdventurer_dexImage"
                 android:layout_alignStart="@+id/adapterAdventurer_dexImage"
                 android:layout_below="@+id/adapterAdventurer_dexImage"
                 android:gravity="center"
@@ -94,6 +104,7 @@
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/adapterAdventurer_dexImage"
+                android:layout_toRightOf="@+id/adapterAdventurer_dexImage"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/auto_fix" />
 
@@ -102,6 +113,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignEnd="@id/adapterAdventurer_intImage"
+                android:layout_alignLeft="@+id/adapterAdventurer_intImage"
+                android:layout_alignRight="@id/adapterAdventurer_intImage"
                 android:layout_alignStart="@+id/adapterAdventurer_intImage"
                 android:layout_below="@+id/adapterAdventurer_intImage"
                 android:gravity="center"

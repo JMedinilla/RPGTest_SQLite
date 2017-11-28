@@ -37,6 +37,23 @@
     <string name="formAdventurer_edtStr">0</string>
     <string name="formAdventurer_txtStr" translatable="false">STR</string>
     <string name="rdBtnDPS" translatable="false">DPS</string>
-    <string name="rdBtnHEALER">HEALER</string>
-    <string name="rdBtnTANK">TANK</string>
+    <string name="rdBtnHEALER">CURADOR</string>
+    <string name="rdBtnTANK">TANQUE</string>
+    <string name="ADVENTURER_RACE_HUMAN">Humano</string>
+    <string name="ADVENTURER_RACE_ORC">Orco</string>
+    <string name="ADVENTURER_RACE_ELF">Elfo</string>
+    <string name="ADVENTURER_RACE_DWARF">Enano</string>
+    <string name="ADVENTURER_RACE_DEMON">Demonio</string>
+    <string name="ADVENTURER_ALIGNMENT_GOOD_LAWFUL">Bueno legal</string>
+    <string name="ADVENTURER_ALIGNMENT_GOOD_NEUTRAL">Bueno neutral</string>
+    <string name="ADVENTURER_ALIGNMENT_GOOD_CHAOTIC">Bueno caótico</string>
+    <string name="ADVENTURER_ALIGNMENT_NEUTRAL_LAWFUL">Neutral legal</string>
+    <string name="ADVENTURER_ALIGNMENT_NEUTRAL_NEUTRAL">Neutral verdadero</string>
+    <string name="ADVENTURER_ALIGNMENT_NEUTRAL_CHAOTIC">Neutral caótico</string>
+    <string name="ADVENTURER_ALIGNMENT_EVIL_LAWFUL">Malvado legal</string>
+    <string name="ADVENTURER_ALIGNMENT_EVIL_NEUTRAL">Malvado neutral</string>
+    <string name="ADVENTURER_ALIGNMENT_EVIL_CHAOTIC">Malvado caótico</string>
+    <string name="CLASS_ROLE_DPS">DPS</string>
+    <string name="CLASS_ROLE_TANK">TANQUE</string>
+    <string name="CLASS_ROLE_HEALER">CURADOR</string>
 </resources>

@@ -11,10 +11,12 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import exam.deint.rpgtest.R;
-import exam.deint.rpgtest.pojos.AdapterPojo_Adventurer;
+import exam.deint.rpgtest.pojos.AdventurerForList;
 
-public class Adapter_Adventurer extends ArrayAdapter<AdapterPojo_Adventurer> {
+public class Adapter_Adventurer extends ArrayAdapter<AdventurerForList> {
     private Context context;
 
     public Adapter_Adventurer(Context context) {
@@ -22,7 +24,7 @@ public class Adapter_Adventurer extends ArrayAdapter<AdapterPojo_Adventurer> {
         this.context = context;
     }
 
-    public void updateList(List<AdapterPojo_Adventurer> list) {
+    public void updateList(List<AdventurerForList> list) {
         clear();
         if (list != null) {
             if (list.size() > 0) {
@@ -40,19 +42,13 @@ public class Adapter_Adventurer extends ArrayAdapter<AdapterPojo_Adventurer> {
 
         if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.adapter_adventurer, parent, false);
-            adventurerHolder = new AdventurerHolder();
-            adventurerHolder.mName = view.findViewById(R.id.adapterAdventurer_name);
-            adventurerHolder.mRace = view.findViewById(R.id.adapterAdventurer_race);
-            adventurerHolder.mClass = view.findViewById(R.id.adapterAdventurer_class);
-            adventurerHolder.mStr = view.findViewById(R.id.adapterAdventurer_str);
-            adventurerHolder.mDex = view.findViewById(R.id.adapterAdventurer_dex);
-            adventurerHolder.mInt = view.findViewById(R.id.adapterAdventurer_int);
+            adventurerHolder = new AdventurerHolder(view);
             view.setTag(adventurerHolder);
         } else {
             adventurerHolder = (AdventurerHolder) view.getTag();
         }
 
-        AdapterPojo_Adventurer adventurer = getItem(position);
+        AdventurerForList adventurer = getItem(position);
         if (adventurer != null) {
             adventurerHolder.mName.setText(adventurer.getRad_name());
             adventurerHolder.mRace.setText(adventurer.getRad_race());
@@ -67,16 +63,26 @@ public class Adapter_Adventurer extends ArrayAdapter<AdapterPojo_Adventurer> {
 
     @Nullable
     @Override
-    public AdapterPojo_Adventurer getItem(int position) {
+    public AdventurerForList getItem(int position) {
         return super.getItem(position);
     }
 
-    private class AdventurerHolder {
+    static class AdventurerHolder {
+        @BindView(R.id.adapterAdventurer_name)
         TextView mName;
+        @BindView(R.id.adapterAdventurer_race)
         TextView mRace;
+        @BindView(R.id.adapterAdventurer_class)
         TextView mClass;
+        @BindView(R.id.adapterAdventurer_str)
         TextView mStr;
+        @BindView(R.id.adapterAdventurer_dex)
         TextView mDex;
+        @BindView(R.id.adapterAdventurer_int)
         TextView mInt;
+
+        AdventurerHolder(View v) {
+            ButterKnife.bind(this, v);
+        }
     }
 }

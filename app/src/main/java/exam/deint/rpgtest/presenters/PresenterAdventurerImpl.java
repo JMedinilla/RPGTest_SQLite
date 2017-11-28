@@ -4,9 +4,9 @@ import java.util.List;
 
 import exam.deint.rpgtest.async_aux.AsyncAdventurer;
 import exam.deint.rpgtest.interfaces.PresenterAdventurer;
-import exam.deint.rpgtest.pojos.AdapterPojo_Adventurer;
-import exam.deint.rpgtest.pojos.DialogAdventurer;
-import exam.deint.rpgtest.pojos.Pojo_Adventurer;
+import exam.deint.rpgtest.pojos.Adventurer;
+import exam.deint.rpgtest.pojos.AdventurerForList;
+import exam.deint.rpgtest.pojos.AdventurerWithClass;
 
 public class PresenterAdventurerImpl implements PresenterAdventurer {
     private PresenterAdventurer.View view;
@@ -21,7 +21,7 @@ public class PresenterAdventurerImpl implements PresenterAdventurer {
     }
 
     @Override
-    public void implSelectAdventurersResponse(List<AdapterPojo_Adventurer> list) {
+    public void implSelectAdventurersResponse(List<AdventurerForList> list) {
         view.viewSelectAllResponse(list);
     }
 
@@ -31,12 +31,12 @@ public class PresenterAdventurerImpl implements PresenterAdventurer {
     }
 
     @Override
-    public void implSelectAdventurerResponse(Pojo_Adventurer pojoAdventurer) {
+    public void implSelectAdventurerResponse(Adventurer pojoAdventurer) {
         view.viewSelectResponse(pojoAdventurer);
     }
 
     @Override
-    public void implInsertAdventurer(Pojo_Adventurer pojoAdventurer) {
+    public void implInsertAdventurer(Adventurer pojoAdventurer) {
         AsyncAdventurer.insertAdventurer(this, pojoAdventurer);
     }
 
@@ -46,7 +46,7 @@ public class PresenterAdventurerImpl implements PresenterAdventurer {
     }
 
     @Override
-    public void implUpdateAdventurer(Pojo_Adventurer pojoAdventurer) {
+    public void implUpdateAdventurer(Adventurer pojoAdventurer) {
         AsyncAdventurer.updateAdventurer(this, pojoAdventurer);
     }
 
@@ -71,7 +71,7 @@ public class PresenterAdventurerImpl implements PresenterAdventurer {
     }
 
     @Override
-    public void implSelectAdventurerClassResponse(DialogAdventurer dialogAdventurer) {
-        view.viewSelectAdventurerClassResponse(dialogAdventurer);
+    public void implSelectAdventurerClassResponse(AdventurerWithClass adventurerWithClass) {
+        view.viewSelectAdventurerClassResponse(adventurerWithClass);
     }
 }

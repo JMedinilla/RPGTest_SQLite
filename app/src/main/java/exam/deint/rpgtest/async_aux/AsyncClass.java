@@ -5,27 +5,27 @@ import android.os.AsyncTask;
 import java.util.List;
 
 import exam.deint.rpgtest.database.ManageClass;
-import exam.deint.rpgtest.pojos.Pojo_Class;
+import exam.deint.rpgtest.pojos.Class;
 import exam.deint.rpgtest.presenters.PresenterClassImpl;
 
 public class AsyncClass {
 
     public static void selectClasses(final PresenterClassImpl presenterClass) {
-        new AsyncTask<Void, Void, List<Pojo_Class>>() {
+        new AsyncTask<Void, Void, List<Class>>() {
             @Override
-            protected List<Pojo_Class> doInBackground(Void... voids) {
+            protected List<Class> doInBackground(Void... voids) {
                 return ManageClass.getInstance().selectAllClass();
             }
 
             @Override
-            protected void onPostExecute(List<Pojo_Class> list) {
+            protected void onPostExecute(List<Class> list) {
                 super.onPostExecute(list);
                 presenterClass.implSelectClassesResponse(list);
             }
         }.execute();
     }
 
-    public static void insertClass(final PresenterClassImpl presenterClass, final Pojo_Class pojoClass) {
+    public static void insertClass(final PresenterClassImpl presenterClass, final Class pojoClass) {
         new AsyncTask<Void, Void, Long>() {
 
             @Override
@@ -41,7 +41,7 @@ public class AsyncClass {
         }.execute();
     }
 
-    public static void updateClass(final PresenterClassImpl presenterClass, final Pojo_Class pojoClass) {
+    public static void updateClass(final PresenterClassImpl presenterClass, final Class pojoClass) {
         new AsyncTask<Void, Void, Integer>() {
             @Override
             protected Integer doInBackground(Void... voids) {
@@ -56,7 +56,7 @@ public class AsyncClass {
         }.execute();
     }
 
-    public static void deleteClass(final PresenterClassImpl presenterClass, final Pojo_Class pojoClass) {
+    public static void deleteClass(final PresenterClassImpl presenterClass, final Class pojoClass) {
         new AsyncTask<Void, Void, Integer>() {
             @Override
             protected Integer doInBackground(Void... voids) {

@@ -4,7 +4,7 @@ import java.util.List;
 
 import exam.deint.rpgtest.async_aux.AsyncClass;
 import exam.deint.rpgtest.interfaces.PresenterClass;
-import exam.deint.rpgtest.pojos.Pojo_Class;
+import exam.deint.rpgtest.pojos.Class;
 
 public class PresenterClassImpl implements PresenterClass {
     private PresenterClass.View view;
@@ -19,12 +19,12 @@ public class PresenterClassImpl implements PresenterClass {
     }
 
     @Override
-    public void implSelectClassesResponse(List<Pojo_Class> list) {
+    public void implSelectClassesResponse(List<Class> list) {
         view.viewSelectAllResponse(list);
     }
 
     @Override
-    public void implInsertClass(Pojo_Class pojoClass) {
+    public void implInsertClass(Class pojoClass) {
         AsyncClass.insertClass(this, pojoClass);
     }
 
@@ -34,7 +34,7 @@ public class PresenterClassImpl implements PresenterClass {
     }
 
     @Override
-    public void implUpdateClass(Pojo_Class pojoClass) {
+    public void implUpdateClass(Class pojoClass) {
         AsyncClass.updateClass(this, pojoClass);
     }
 
@@ -44,7 +44,7 @@ public class PresenterClassImpl implements PresenterClass {
     }
 
     @Override
-    public void implDeleteClass(Pojo_Class pojoClass) {
+    public void implDeleteClass(Class pojoClass) {
         AsyncClass.deleteClass(this, pojoClass);
     }
 

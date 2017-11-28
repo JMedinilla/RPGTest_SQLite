@@ -2,18 +2,18 @@ package exam.deint.rpgtest.interfaces;
 
 import java.util.List;
 
-import exam.deint.rpgtest.pojos.Pojo_Class;
+import exam.deint.rpgtest.pojos.Class;
 
 public interface PresenterClass {
     void implSelectClasses();
 
-    void implInsertClass(Pojo_Class quest);
+    void implInsertClass(Class quest);
 
-    void implUpdateClass(Pojo_Class quest);
+    void implUpdateClass(Class quest);
 
-    void implDeleteClass(Pojo_Class quest);
+    void implDeleteClass(Class quest);
 
-    void implSelectClassesResponse(List<Pojo_Class> list);
+    void implSelectClassesResponse(List<Class> list);
 
     void implInsertClassResponse(Long aLong);
 
@@ -24,7 +24,7 @@ public interface PresenterClass {
     interface View {
         void viewMessage(String message);
 
-        void viewSelectAllResponse(List<Pojo_Class> list);
+        void viewSelectAllResponse(List<Class> list);
 
         void viewInsertClassResponse(long result);
 

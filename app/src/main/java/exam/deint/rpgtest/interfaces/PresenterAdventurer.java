@@ -2,26 +2,26 @@ package exam.deint.rpgtest.interfaces;
 
 import java.util.List;
 
-import exam.deint.rpgtest.pojos.AdapterPojo_Adventurer;
-import exam.deint.rpgtest.pojos.DialogAdventurer;
-import exam.deint.rpgtest.pojos.Pojo_Adventurer;
+import exam.deint.rpgtest.pojos.Adventurer;
+import exam.deint.rpgtest.pojos.AdventurerForList;
+import exam.deint.rpgtest.pojos.AdventurerWithClass;
 
 public interface PresenterAdventurer {
     void implSelectAdventurers();
 
     void implSelectAdventurer(int id);
 
-    void implInsertAdventurer(Pojo_Adventurer adventurer);
+    void implInsertAdventurer(Adventurer adventurer);
 
-    void implUpdateAdventurer(Pojo_Adventurer adventurer);
+    void implUpdateAdventurer(Adventurer adventurer);
 
     void implDeleteAdventurer(int id);
 
     void implSelectAdventurerClass(int id);
 
-    void implSelectAdventurersResponse(List<AdapterPojo_Adventurer> list);
+    void implSelectAdventurersResponse(List<AdventurerForList> list);
 
-    void implSelectAdventurerResponse(Pojo_Adventurer pojoAdventurer);
+    void implSelectAdventurerResponse(Adventurer pojoAdventurer);
 
     void implInsertAdventurerResponse(Long aLong);
 
@@ -29,14 +29,14 @@ public interface PresenterAdventurer {
 
     void implDeleteAdventurerResponse(Integer integer);
 
-    void implSelectAdventurerClassResponse(DialogAdventurer dialogAdventurer);
+    void implSelectAdventurerClassResponse(AdventurerWithClass adventurerWithClass);
 
     interface View {
         void viewMessage(String message);
 
-        void viewSelectAllResponse(List<AdapterPojo_Adventurer> list);
+        void viewSelectAllResponse(List<AdventurerForList> list);
 
-        void viewSelectResponse(Pojo_Adventurer pojoAdventurer);
+        void viewSelectResponse(Adventurer pojoAdventurer);
 
         void viewInsertAdventurerResponse(long result);
 
@@ -44,6 +44,6 @@ public interface PresenterAdventurer {
 
         void viewDeleteAdventurerResponse(int result);
 
-        void viewSelectAdventurerClassResponse(DialogAdventurer dialogAdventurer);
+        void viewSelectAdventurerClassResponse(AdventurerWithClass adventurerWithClass);
     }
 }

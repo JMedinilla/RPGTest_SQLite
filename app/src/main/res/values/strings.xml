@@ -38,4 +38,21 @@
     <string name="dialog_dex_txt">DEX</string>
     <string name="dialog_int_txt">INT</string>
     <string name="dialogPositiveButton">Close</string>
+    <string name="ADVENTURER_RACE_HUMAN">Human</string>
+    <string name="ADVENTURER_RACE_ORC">Orc</string>
+    <string name="ADVENTURER_RACE_ELF">Elf</string>
+    <string name="ADVENTURER_RACE_DWARF">Dwarf</string>
+    <string name="ADVENTURER_RACE_DEMON">Demon</string>
+    <string name="ADVENTURER_ALIGNMENT_GOOD_LAWFUL">Lawful good</string>
+    <string name="ADVENTURER_ALIGNMENT_GOOD_NEUTRAL">Neutral good</string>
+    <string name="ADVENTURER_ALIGNMENT_GOOD_CHAOTIC">Chaotic good</string>
+    <string name="ADVENTURER_ALIGNMENT_NEUTRAL_LAWFUL">Lawful neutral</string>
+    <string name="ADVENTURER_ALIGNMENT_NEUTRAL_NEUTRAL">True neutral</string>
+    <string name="ADVENTURER_ALIGNMENT_NEUTRAL_CHAOTIC">Chaotic neutral</string>
+    <string name="ADVENTURER_ALIGNMENT_EVIL_LAWFUL">Lawful evil</string>
+    <string name="ADVENTURER_ALIGNMENT_EVIL_NEUTRAL">Neutral evil</string>
+    <string name="ADVENTURER_ALIGNMENT_EVIL_CHAOTIC">Chaotic evil</string>
+    <string name="CLASS_ROLE_DPS">DPS</string>
+    <string name="CLASS_ROLE_TANK">TANK</string>
+    <string name="CLASS_ROLE_HEALER">HEALER</string>
 </resources>

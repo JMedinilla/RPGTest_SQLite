@@ -11,8 +11,9 @@ class DatabaseContract {
         static final String COLUMN_ROLE = "cl_role";
 
         static final String SQL_CREATION = String.format(
-                "CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT NOT NULL, %s TEXT NOT NULL,"
-                        + " %s TEXT NOT NULL)",
+                "CREATE TABLE %s"
+                        + "(%s INTEGER PRIMARY KEY AUTOINCREMENT,"
+                        + "%s TEXT NOT NULL, %s TEXT NOT NULL, %s TEXT NOT NULL)",
                 TABLE_NAME, COLUMN_ID, COLUMN_NAME,
                 COLUMN_WEAPON, COLUMN_ROLE
         );
@@ -44,9 +45,11 @@ class DatabaseContract {
         );
 
         static final String SQL_CREATION = String.format(
-                "CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT NOT NULL, %s TEXT NOT NULL,"
-                        + " %s TEXT NOT NULL, %s INTEGER NOT NULL %s, %s INTEGER NOT NULL,"
-                        + " %s INTEGER NOT NULL, %s INTEGER NOT NULL)",
+                "CREATE TABLE %s"
+                        + "(%s INTEGER PRIMARY KEY AUTOINCREMENT,"
+                        + "%s TEXT NOT NULL, %s TEXT NOT NULL, %s TEXT NOT NULL,"
+                        + "%s INTEGER NOT NULL %s, %s INTEGER NOT NULL, %s INTEGER NOT NULL,"
+                        + "%s INTEGER NOT NULL)",
                 TABLE_NAME, COLUMN_ID, COLUMN_NAME,
                 COLUMN_RACE, COLUMN_ALIGNMENT, COLUMN_CLASS,
                 REFERENCE_CLASS, COLUMN_STR, COLUMN_DEX,
@@ -67,8 +70,13 @@ class DatabaseContract {
                 AdventurerTable.TABLE_NAME, ClassTable.TABLE_NAME, AdventurerTable.COLUMN_CLASS, ClassTable.COLUMN_ID);
 
         static final String[] JOINCOLUMNS = new String[]{
-                "ad." + COLUMN_ID, COLUMN_NAME, COLUMN_RACE,
-                "cl." + ClassTable.COLUMN_NAME, COLUMN_STR, COLUMN_DEX, COLUMN_INT
+                "ad." + COLUMN_ID,
+                COLUMN_NAME,
+                COLUMN_RACE,
+                "cl." + ClassTable.COLUMN_NAME,
+                COLUMN_STR,
+                COLUMN_DEX,
+                COLUMN_INT
         };
     }
 }

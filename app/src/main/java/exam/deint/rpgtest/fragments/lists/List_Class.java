@@ -2,9 +2,10 @@ package exam.deint.rpgtest.fragments.lists;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -15,61 +16,68 @@ import android.widget.ListView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 import exam.deint.rpgtest.R;
 import exam.deint.rpgtest.activities.Activity_Home;
 import exam.deint.rpgtest.adapters.Adapter_Class;
 import exam.deint.rpgtest.interfaces.PresenterClass;
-import exam.deint.rpgtest.pojos.Pojo_Class;
+import exam.deint.rpgtest.pojos.Class;
 import exam.deint.rpgtest.presenters.PresenterClassImpl;
 
 public class List_Class extends Fragment implements PresenterClass.View {
+
+    @BindView(R.id.listClass)
+    ListView listClass;
+
+    private Unbinder unbinder;
     private ListClassInterface listClassInterface;
     private PresenterClassImpl presenterClass;
     private Adapter_Class adapterClass;
-
-    private ListView listView;
-    private FloatingActionButton btnForm;
+    private FragmentActivity activity;
 
     @Override
     public void viewMessage(String message) {
-        Activity_Home.showSnackbar(message);
+        Activity_Home.showMessage(message);
     }
 
     @Override
-    public void viewSelectAllResponse(List<Pojo_Class> list) {
+    public void viewSelectAllResponse(List<Class> list) {
         adapterClass.updateList(list);
     }
 
     @Override
     public void viewInsertClassResponse(long result) {
         if (result == -1) {
-            viewMessage(getContext().getString(R.string.errorInsert));
+            viewMessage(activity.getString(R.string.errorInsert));
         } else {
-            viewMessage(getContext().getString(R.string.successInsert));
-            getActivity().onBackPressed();
+            viewMessage(activity.getString(R.string.successInsert));
+            activity.onBackPressed();
         }
     }
 
     @Override
     public void viewUpdateClassResponse(int result) {
         if (result == 0) {
-            viewMessage(getContext().getString(R.string.errorUpdate));
+            viewMessage(activity.getString(R.string.errorUpdate));
         } else {
-            viewMessage(getContext().getString(R.string.successUpdate));
-            getActivity().onBackPressed();
+            viewMessage(activity.getString(R.string.successUpdate));
+            activity.onBackPressed();
         }
     }
 
     @Override
     public void viewDeleteClassResponse(int result) {
         if (result == 0) {
-            viewMessage(getContext().getString(R.string.errorDelete));
+            viewMessage(activity.getString(R.string.errorDelete));
         } else {
-            viewMessage(getContext().getString(R.string.successDelete));
+            viewMessage(activity.getString(R.string.successDelete));
         }
     }
 
-    public void getClassFromHome(Pojo_Class pojoClass, boolean update) {
+    public void getClassFromHome(Class pojoClass, boolean update) {
         if (update) {
             presenterClass.implUpdateClass(pojoClass);
         } else {
@@ -77,8 +85,19 @@ public class List_Class extends Fragment implements PresenterClass.View {
         }
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    @OnClick(R.id.listClassButton)
+    public void onViewClicked() {
+        listClassInterface.fromListClassToForm(null);
+    }
+
     public interface ListClassInterface {
-        void fromListClassToForm(Pojo_Class pojoClass);
+        void fromListClassToForm(Class pojoClass);
     }
 
     @Override
@@ -91,32 +110,50 @@ public class List_Class extends Fragment implements PresenterClass.View {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_class, container, false);
-        listView = view.findViewById(R.id.listClass);
-        btnForm = view.findViewById(R.id.listClassButton);
-        btnForm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listClassInterface.fromListClassToForm(null);
-            }
-        });
+        unbinder = ButterKnife.bind(this, view);
         return view;
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        listView.setAdapter(adapterClass);
-        registerForContextMenu(listView);
+        listClass.setAdapter(adapterClass);
+        registerForContextMenu(listClass);
 
         presenterClass.implSelectClasses();
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        activity.getMenuInflater().inflate(R.menu.context_menu, menu);
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        Class _class = adapterClass.getItem(info.position);
+        switch (item.getItemId()) {
+            case R.id.context_update:
+                listClassInterface.fromListClassToForm(_class);
+                break;
+            case R.id.context_delete:
+                presenterClass.implDeleteClass(_class);
+                presenterClass.implSelectClasses();
+                break;
+        }
+        return super.onContextItemSelected(item);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         listClassInterface = (ListClassInterface) context;
+        if (getActivity() != null) {
+            activity = getActivity();
+        }
     }
 
     @Override
@@ -125,27 +162,5 @@ public class List_Class extends Fragment implements PresenterClass.View {
         listClassInterface = null;
         presenterClass = null;
         adapterClass = null;
-    }
-
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        getActivity().getMenuInflater().inflate(R.menu.context_menu, menu);
-        super.onCreateContextMenu(menu, v, menuInfo);
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        Pojo_Class pojo_class = adapterClass.getItem(info.position);
-        switch (item.getItemId()) {
-            case R.id.context_update:
-                listClassInterface.fromListClassToForm(pojo_class);
-                break;
-            case R.id.context_delete:
-                presenterClass.implDeleteClass(pojo_class);
-                presenterClass.implSelectClasses();
-                break;
-        }
-        return super.onContextItemSelected(item);
     }
 }

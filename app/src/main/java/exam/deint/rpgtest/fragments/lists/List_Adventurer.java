@@ -3,9 +3,10 @@ package exam.deint.rpgtest.fragments.lists;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -18,37 +19,44 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 import exam.deint.rpgtest.R;
 import exam.deint.rpgtest.activities.Activity_Home;
 import exam.deint.rpgtest.adapters.Adapter_Adventurer;
 import exam.deint.rpgtest.interfaces.PresenterAdventurer;
-import exam.deint.rpgtest.pojos.AdapterPojo_Adventurer;
-import exam.deint.rpgtest.pojos.DialogAdventurer;
-import exam.deint.rpgtest.pojos.Pojo_Adventurer;
+import exam.deint.rpgtest.pojos.Adventurer;
+import exam.deint.rpgtest.pojos.AdventurerForList;
+import exam.deint.rpgtest.pojos.AdventurerWithClass;
 import exam.deint.rpgtest.presenters.PresenterAdventurerImpl;
 
 public class List_Adventurer extends Fragment implements PresenterAdventurer.View {
+
+    @BindView(R.id.listAdventurer)
+    ListView listAdventurer;
+
+    private Unbinder unbinder;
     private ListAdventurerInterface listAdventureInterface;
     private PresenterAdventurerImpl presenterAdventurer;
     private Adapter_Adventurer adapterAdventurer;
+    private FragmentActivity activity;
 
-    private ListView listView;
-    private FloatingActionButton btnForm;
-
-    boolean calledFromUpdate;
+    private boolean calledFromUpdate;
 
     @Override
     public void viewMessage(String message) {
-        Activity_Home.showSnackbar(message);
+        Activity_Home.showMessage(message);
     }
 
     @Override
-    public void viewSelectAllResponse(List<AdapterPojo_Adventurer> list) {
+    public void viewSelectAllResponse(List<AdventurerForList> list) {
         adapterAdventurer.updateList(list);
     }
 
     @Override
-    public void viewSelectResponse(Pojo_Adventurer pojoAdventurer) {
+    public void viewSelectResponse(Adventurer pojoAdventurer) {
         if (calledFromUpdate) {
             listAdventureInterface.fromListAdventurerToForm(pojoAdventurer);
             calledFromUpdate = false;
@@ -63,7 +71,7 @@ public class List_Adventurer extends Fragment implements PresenterAdventurer.Vie
             viewMessage(getString(R.string.errorInsert));
         } else {
             viewMessage(getString(R.string.successInsert));
-            getActivity().onBackPressed();
+            activity.onBackPressed();
         }
     }
 
@@ -73,7 +81,7 @@ public class List_Adventurer extends Fragment implements PresenterAdventurer.Vie
             viewMessage(getString(R.string.errorUpdate));
         } else {
             viewMessage(getString(R.string.successUpdate));
-            getActivity().onBackPressed();
+            activity.onBackPressed();
         }
     }
 
@@ -87,30 +95,31 @@ public class List_Adventurer extends Fragment implements PresenterAdventurer.Vie
     }
 
     @Override
-    public void viewSelectAdventurerClassResponse(DialogAdventurer dialogAdventurer) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+    public void viewSelectAdventurerClassResponse(AdventurerWithClass adventurerWithClass) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        LayoutInflater inflater = activity.getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_adventurer, null);
         builder.setView(view);
 
         TextView txtName = view.findViewById(R.id.dialog_name);
-        txtName.setText(dialogAdventurer.getAd_name());
         TextView txtRace = view.findViewById(R.id.dialog_race);
-        txtRace.setText(dialogAdventurer.getAd_race());
         TextView txtAlignment = view.findViewById(R.id.dialog_alignment);
-        txtAlignment.setText(dialogAdventurer.getAd_alignment());
         TextView txtClass = view.findViewById(R.id.dialog_class);
-        txtClass.setText(dialogAdventurer.getAd_class());
         TextView txtWeapon = view.findViewById(R.id.dialog_weapon);
-        txtWeapon.setText(dialogAdventurer.getAd_weapon());
         TextView txtRole = view.findViewById(R.id.dialog_role);
-        txtRole.setText(dialogAdventurer.getAd_role());
         TextView txtSTR = view.findViewById(R.id.dialog_str);
-        txtSTR.setText(String.valueOf(dialogAdventurer.getAd_str()));
         TextView txtDEX = view.findViewById(R.id.dialog_dex);
-        txtDEX.setText(String.valueOf(dialogAdventurer.getAd_dex()));
         TextView txtINT = view.findViewById(R.id.dialog_int);
-        txtINT.setText(String.valueOf(dialogAdventurer.getAd_int()));
+
+        txtName.setText(adventurerWithClass.getAd_name());
+        txtRace.setText(adventurerWithClass.getAd_race());
+        txtAlignment.setText(adventurerWithClass.getAd_alignment());
+        txtClass.setText(adventurerWithClass.getAd_class());
+        txtWeapon.setText(adventurerWithClass.getAd_weapon());
+        txtRole.setText(adventurerWithClass.getAd_role());
+        txtSTR.setText(String.valueOf(adventurerWithClass.getAd_str()));
+        txtDEX.setText(String.valueOf(adventurerWithClass.getAd_dex()));
+        txtINT.setText(String.valueOf(adventurerWithClass.getAd_int()));
 
         builder.setPositiveButton(R.string.dialogPositiveButton, new DialogInterface.OnClickListener() {
             @Override
@@ -118,12 +127,11 @@ public class List_Adventurer extends Fragment implements PresenterAdventurer.Vie
                 //
             }
         });
-
         AlertDialog dialog = builder.create();
         dialog.show();
     }
 
-    public void getAdventurerFromHome(Pojo_Adventurer pojoAdventurer, boolean update) {
+    public void getAdventurerFromHome(Adventurer pojoAdventurer, boolean update) {
         if (update) {
             presenterAdventurer.implUpdateAdventurer(pojoAdventurer);
         } else {
@@ -131,8 +139,19 @@ public class List_Adventurer extends Fragment implements PresenterAdventurer.Vie
         }
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    @OnClick(R.id.listAdventurerButton)
+    public void onViewClicked() {
+        listAdventureInterface.fromListAdventurerToForm(null);
+    }
+
     public interface ListAdventurerInterface {
-        void fromListAdventurerToForm(Pojo_Adventurer pojoAdventurer);
+        void fromListAdventurerToForm(Adventurer pojoAdventurer);
     }
 
     @Override
@@ -146,30 +165,23 @@ public class List_Adventurer extends Fragment implements PresenterAdventurer.Vie
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_adventurer, container, false);
-        listView = view.findViewById(R.id.listAdventurer);
-        btnForm = view.findViewById(R.id.listAdventurerButton);
-        btnForm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listAdventureInterface.fromListAdventurerToForm(null);
-            }
-        });
+        unbinder = ButterKnife.bind(this, view);
         return view;
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        listView.setDivider(null);
-        listView.setAdapter(adapterAdventurer);
-        registerForContextMenu(listView);
+        listAdventurer.setDivider(null);
+        listAdventurer.setAdapter(adapterAdventurer);
+        registerForContextMenu(listAdventurer);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listAdventurer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                AdapterPojo_Adventurer adventurer = adapterAdventurer.getItem(i);
+                AdventurerForList adventurer = adapterAdventurer.getItem(i);
                 if (adventurer != null) {
                     presenterAdventurer.implSelectAdventurer(adventurer.getRad_id());
                 }
@@ -180,27 +192,15 @@ public class List_Adventurer extends Fragment implements PresenterAdventurer.Vie
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        listAdventureInterface = (ListAdventurerInterface) context;
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        listAdventureInterface = null;
-    }
-
-    @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        getActivity().getMenuInflater().inflate(R.menu.context_menu, menu);
+        activity.getMenuInflater().inflate(R.menu.context_menu, menu);
         super.onCreateContextMenu(menu, v, menuInfo);
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        AdapterPojo_Adventurer adapterPojoAdventurer = adapterAdventurer.getItem(info.position);
+        AdventurerForList adapterPojoAdventurer = adapterAdventurer.getItem(info.position);
         switch (item.getItemId()) {
             case R.id.context_update:
                 calledFromUpdate = true;
@@ -216,5 +216,20 @@ public class List_Adventurer extends Fragment implements PresenterAdventurer.Vie
                 break;
         }
         return super.onContextItemSelected(item);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        listAdventureInterface = (ListAdventurerInterface) context;
+        if (getActivity() != null) {
+            activity = getActivity();
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        listAdventureInterface = null;
     }
 }

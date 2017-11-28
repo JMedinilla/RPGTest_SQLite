@@ -7,10 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import exam.deint.rpgtest.pojos.AdapterPojo_Adventurer;
-import exam.deint.rpgtest.pojos.DialogAdventurer;
-import exam.deint.rpgtest.pojos.Pojo_Adventurer;
-import exam.deint.rpgtest.pojos.Pojo_Class;
+import exam.deint.rpgtest.pojos.Adventurer;
+import exam.deint.rpgtest.pojos.AdventurerForList;
+import exam.deint.rpgtest.pojos.AdventurerWithClass;
+import exam.deint.rpgtest.pojos.Class;
 
 public class ManageAdventurer {
     private static ManageAdventurer instance;
@@ -22,15 +22,15 @@ public class ManageAdventurer {
         return instance;
     }
 
-    public List<AdapterPojo_Adventurer> selectAllAdventurer() {
+    public List<AdventurerForList> selectAllAdventurer() {
         SQLiteDatabase sqLiteDatabase = DatabaseHelper.getInstance().openDatabase();
         Cursor cursor = sqLiteDatabase.query(DatabaseContract.AdventurerTable.JOINCLASS,
                 DatabaseContract.AdventurerTable.JOINCOLUMNS, null, null, null, null, null);
 
-        ArrayList<AdapterPojo_Adventurer> arrayList = new ArrayList<>();
+        ArrayList<AdventurerForList> arrayList = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
-                AdapterPojo_Adventurer adventurer = new AdapterPojo_Adventurer(
+                AdventurerForList adventurer = new AdventurerForList(
                         cursor.getInt(0), cursor.getString(1),
                         cursor.getString(2), cursor.getString(3),
                         cursor.getInt(4), cursor.getInt(5), cursor.getInt(6)
@@ -44,14 +44,14 @@ public class ManageAdventurer {
         return arrayList;
     }
 
-    public Pojo_Adventurer selectAdventurer(int id) {
+    public Adventurer selectAdventurer(int id) {
         SQLiteDatabase sqLiteDatabase = DatabaseHelper.getInstance().openDatabase();
         Cursor cursor = sqLiteDatabase.query(DatabaseContract.AdventurerTable.TABLE_NAME,
                 DatabaseContract.AdventurerTable.ALL_COLUMNS, "_id = ?", new String[]{String.valueOf(id)}, null, null, null);
 
-        Pojo_Adventurer pojo_adventurer = null;
+        Adventurer _adventurer = null;
         if (cursor.moveToFirst()) {
-            pojo_adventurer = new Pojo_Adventurer(
+            _adventurer = new Adventurer(
                     cursor.getInt(0), cursor.getString(1), cursor.getString(2),
                     cursor.getString(3), cursor.getInt(4), cursor.getInt(5),
                     cursor.getInt(6), cursor.getInt(7)
@@ -60,10 +60,10 @@ public class ManageAdventurer {
 
         cursor.close();
         DatabaseHelper.getInstance().closeDatabase();
-        return pojo_adventurer;
+        return _adventurer;
     }
 
-    public long insertAdventurer(Pojo_Adventurer pojoAdventurer) {
+    public long insertAdventurer(Adventurer pojoAdventurer) {
         ContentValues values = new ContentValues();
         SQLiteDatabase sqLiteDatabase = DatabaseHelper.getInstance().openDatabase();
         values.put(DatabaseContract.AdventurerTable.COLUMN_NAME, pojoAdventurer.getAd_name());
@@ -78,7 +78,7 @@ public class ManageAdventurer {
         return result;
     }
 
-    public int updateAdventurer(Pojo_Adventurer pojoAdventurer) {
+    public int updateAdventurer(Adventurer pojoAdventurer) {
         ContentValues values = new ContentValues();
         SQLiteDatabase sqLiteDatabase = DatabaseHelper.getInstance().openDatabase();
         values.put(DatabaseContract.AdventurerTable.COLUMN_NAME, pojoAdventurer.getAd_name());
@@ -100,16 +100,16 @@ public class ManageAdventurer {
         return result;
     }
 
-    public DialogAdventurer selectAdventurerClass(int id) {
-        DialogAdventurer dialogAdventurer = null;
-        Pojo_Adventurer pojoAdventurer = null;
-        Pojo_Class pojoClass = null;
+    public AdventurerWithClass selectAdventurerClass(int id) {
+        AdventurerWithClass adventurerWithClass = null;
+        Adventurer pojoAdventurer = null;
+        Class pojoClass = null;
 
         SQLiteDatabase sqLiteDatabase = DatabaseHelper.getInstance().openDatabase();
         Cursor curAdv = sqLiteDatabase.query(DatabaseContract.AdventurerTable.TABLE_NAME,
                 DatabaseContract.AdventurerTable.ALL_COLUMNS, "_id = ?", new String[]{String.valueOf(id)}, null, null, null);
         if (curAdv.moveToFirst()) {
-            pojoAdventurer = new Pojo_Adventurer(
+            pojoAdventurer = new Adventurer(
                     curAdv.getInt(0), curAdv.getString(1), curAdv.getString(2),
                     curAdv.getString(3), curAdv.getInt(4), curAdv.getInt(5),
                     curAdv.getInt(6), curAdv.getInt(7)
@@ -120,7 +120,7 @@ public class ManageAdventurer {
             Cursor curCla = sqLiteDatabase.query(DatabaseContract.ClassTable.TABLE_NAME,
                     DatabaseContract.ClassTable.ALL_COLUMNS, "_id = ?", new String[]{String.valueOf(pojoAdventurer.getAd_class())}, null, null, null);
             if (curCla.moveToFirst()) {
-                pojoClass = new Pojo_Class(
+                pojoClass = new Class(
                         curCla.getInt(0), curCla.getString(1),
                         curCla.getString(2), curCla.getString(3)
                 );
@@ -129,7 +129,7 @@ public class ManageAdventurer {
         }
 
         if (pojoClass != null) {
-            dialogAdventurer = new DialogAdventurer(
+            adventurerWithClass = new AdventurerWithClass(
                     pojoAdventurer.getAd_id(), pojoAdventurer.getAd_name(), pojoAdventurer.getAd_race(),
                     pojoAdventurer.getAd_alignment(), pojoClass.getCl_name(), pojoClass.getCl_weapon(),
                     pojoClass.getCl_role(), pojoAdventurer.getAd_str(), pojoAdventurer.getAd_dex(),
@@ -138,6 +138,6 @@ public class ManageAdventurer {
         }
 
         DatabaseHelper.getInstance().closeDatabase();
-        return dialogAdventurer;
+        return adventurerWithClass;
     }
 }

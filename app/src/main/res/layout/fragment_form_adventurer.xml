@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#22000000"
     android:padding="@dimen/activity_vertical_margin">
 
     <android.support.v7.widget.CardView
@@ -31,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/formAdventurer_txtName"
                 android:layout_toEndOf="@+id/formAdventurer_txtName"
+                android:layout_toRightOf="@+id/formAdventurer_txtName"
                 android:inputType="text"
                 android:labelFor="@+id/formAdventurer_edtName" />
 
@@ -48,7 +50,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/formAdventurer_txtRace"
-                android:layout_toEndOf="@+id/formAdventurer_txtRace" />
+                android:layout_toEndOf="@+id/formAdventurer_txtRace"
+                android:layout_toRightOf="@+id/formAdventurer_txtRace" />
 
             <TextView
                 android:id="@+id/formAdventurer_txtAlignment"
@@ -64,7 +67,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/formAdventurer_txtAlignment"
-                android:layout_toEndOf="@+id/formAdventurer_txtAlignment" />
+                android:layout_toEndOf="@+id/formAdventurer_txtAlignment"
+                android:layout_toRightOf="@+id/formAdventurer_txtAlignment" />
 
             <TextView
                 android:id="@+id/formAdventurer_txtClass"
@@ -80,7 +84,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/formAdventurer_txtClass"
-                android:layout_toEndOf="@+id/formAdventurer_txtClass" />
+                android:layout_toEndOf="@+id/formAdventurer_txtClass"
+                android:layout_toRightOf="@+id/formAdventurer_txtClass" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -93,6 +98,7 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
                     android:gravity="center"
                     android:text="@string/formAdventurer_txtStr"
                     android:textColor="@color/colorBlack" />
@@ -102,6 +108,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignEnd="@+id/formAdventurer_txtStr"
+                    android:layout_alignLeft="@+id/formAdventurer_txtStr"
+                    android:layout_alignRight="@+id/formAdventurer_txtStr"
                     android:layout_alignStart="@+id/formAdventurer_txtStr"
                     android:layout_below="@+id/formAdventurer_txtStr"
                     android:gravity="center"
@@ -114,7 +122,9 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
                     android:layout_toEndOf="@+id/formAdventurer_txtStr"
+                    android:layout_toRightOf="@+id/formAdventurer_txtStr"
                     android:gravity="center"
                     android:text="@string/formAdventurer_txtDex"
                     android:textColor="@color/colorBlack" />
@@ -124,6 +134,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignEnd="@+id/formAdventurer_txtDex"
+                    android:layout_alignLeft="@+id/formAdventurer_txtDex"
+                    android:layout_alignRight="@+id/formAdventurer_txtDex"
                     android:layout_alignStart="@+id/formAdventurer_txtDex"
                     android:layout_below="@+id/formAdventurer_txtDex"
                     android:gravity="center"
@@ -136,6 +148,7 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/formAdventurer_txtDex"
+                    android:layout_toRightOf="@id/formAdventurer_txtDex"
                     android:gravity="center"
                     android:text="@string/formAdventurer_txtInt"
                     android:textColor="@color/colorBlack" />
@@ -145,6 +158,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignEnd="@+id/formAdventurer_txtInt"
+                    android:layout_alignLeft="@+id/formAdventurer_txtInt"
+                    android:layout_alignRight="@+id/formAdventurer_txtInt"
                     android:layout_alignStart="@+id/formAdventurer_txtInt"
                     android:layout_below="@+id/formAdventurer_txtInt"
                     android:gravity="center"
@@ -162,6 +177,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="60dp"
-        android:src="@drawable/ic_human_white_36dp"
+        android:src="@drawable/human_white"
         app:fabSize="normal" />
 </RelativeLayout>

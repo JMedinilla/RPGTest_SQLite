@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import exam.deint.rpgtest.pojos.Pojo_Class;
-import exam.deint.rpgtest.pojos.Spinner_Class;
+import exam.deint.rpgtest.pojos.Class;
+import exam.deint.rpgtest.pojos.ClassForSpinner;
 
 public class ManageClass {
     private static ManageClass instance;
@@ -20,16 +20,16 @@ public class ManageClass {
         return instance;
     }
 
-    public List<Pojo_Class> selectAllClass() {
+    public List<Class> selectAllClass() {
         SQLiteDatabase sqLiteDatabase = DatabaseHelper.getInstance().openDatabase();
         Cursor cursor = sqLiteDatabase.query(
                 DatabaseContract.ClassTable.TABLE_NAME, DatabaseContract.ClassTable.ALL_COLUMNS, null, null, null, null, null
         );
 
-        ArrayList<Pojo_Class> tmpList = new ArrayList<>();
+        ArrayList<Class> tmpList = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
-                Pojo_Class pojoClass = new Pojo_Class(
+                Class pojoClass = new Class(
                         cursor.getInt(0), cursor.getString(1),
                         cursor.getString(2), cursor.getString(3)
                 );
@@ -42,17 +42,17 @@ public class ManageClass {
         return tmpList;
     }
 
-    public List<Spinner_Class> selectSpinnerClasses() {
+    public List<ClassForSpinner> selectSpinnerClasses() {
         SQLiteDatabase sqLiteDatabase = DatabaseHelper.getInstance().openDatabase();
         Cursor cursor = sqLiteDatabase.query(
                 DatabaseContract.ClassTable.TABLE_NAME, new String[]{DatabaseContract.ClassTable.COLUMN_ID,
                         DatabaseContract.ClassTable.COLUMN_NAME}, null, null, null, null, null
         );
 
-        ArrayList<Spinner_Class> tmpList = new ArrayList<>();
+        ArrayList<ClassForSpinner> tmpList = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
-                Spinner_Class pojoClass = new Spinner_Class(
+                ClassForSpinner pojoClass = new ClassForSpinner(
                         cursor.getInt(0), cursor.getString(1)
                 );
                 tmpList.add(pojoClass);
@@ -64,7 +64,7 @@ public class ManageClass {
         return tmpList;
     }
 
-    public long insertClass(Pojo_Class pojoClass) {
+    public long insertClass(Class pojoClass) {
         ContentValues values = new ContentValues();
         SQLiteDatabase sqLiteDatabase = DatabaseHelper.getInstance().openDatabase();
         values.put(DatabaseContract.ClassTable.COLUMN_NAME, pojoClass.getCl_name());
@@ -75,7 +75,7 @@ public class ManageClass {
         return result;
     }
 
-    public int updateClass(Pojo_Class pojoClass) {
+    public int updateClass(Class pojoClass) {
         ContentValues values = new ContentValues();
         SQLiteDatabase sqLiteDatabase = DatabaseHelper.getInstance().openDatabase();
         values.put(DatabaseContract.ClassTable.COLUMN_NAME, pojoClass.getCl_name());
@@ -87,7 +87,7 @@ public class ManageClass {
         return result;
     }
 
-    public int deleteClass(Pojo_Class pojoClass) {
+    public int deleteClass(Class pojoClass) {
         SQLiteDatabase sqLiteDatabase = DatabaseHelper.getInstance().openDatabase();
         int result = sqLiteDatabase.delete(DatabaseContract.ClassTable.TABLE_NAME, "_id = ?", new String[]{String.valueOf(pojoClass.getCl_id())});
         DatabaseHelper.getInstance().closeDatabase();

@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/RPGTest.iml" filepath="$PROJECT_DIR$/RPGTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/RPGTest_SQLite.iml" filepath="$PROJECT_DIR$/RPGTest_SQLite.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>

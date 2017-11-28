@@ -12,10 +12,13 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import exam.deint.rpgtest.Constants;
 import exam.deint.rpgtest.R;
-import exam.deint.rpgtest.pojos.Pojo_Class;
+import exam.deint.rpgtest.pojos.Class;
 
-public class Adapter_Class extends ArrayAdapter<Pojo_Class> {
+public class Adapter_Class extends ArrayAdapter<Class> {
     private Context context;
 
     public Adapter_Class(Context context) {
@@ -23,7 +26,7 @@ public class Adapter_Class extends ArrayAdapter<Pojo_Class> {
         this.context = context;
     }
 
-    public void updateList(List<Pojo_Class> list) {
+    public void updateList(List<Class> list) {
         clear();
         if (list != null) {
             if (list.size() > 0) {
@@ -41,30 +44,26 @@ public class Adapter_Class extends ArrayAdapter<Pojo_Class> {
 
         if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.adapter_class, parent, false);
-            classHolder = new ClassHolder();
-            classHolder.name = view.findViewById(R.id.adapterClass_name);
-            classHolder.role = view.findViewById(R.id.adapterClass_role);
-            classHolder.weapon = view.findViewById(R.id.adapterClass_weapon);
+            classHolder = new ClassHolder(view);
             view.setTag(classHolder);
         } else {
             classHolder = (ClassHolder) view.getTag();
         }
 
-        Pojo_Class pojo_class = getItem(position);
-        if (pojo_class != null) {
-            classHolder.name.setText(pojo_class.getCl_name());
-            classHolder.role.setText(pojo_class.getCl_role());
-            classHolder.weapon.setText(pojo_class.getCl_weapon());
-            switch (pojo_class.getCl_role()) {
-                case Pojo_Class.CLASS_ROLE_DPS:
-                    view.setBackgroundColor(ContextCompat.getColor(context, R.color.colorDPS));
-                    break;
-                case Pojo_Class.CLASS_ROLE_TANK:
-                    view.setBackgroundColor(ContextCompat.getColor(context, R.color.colorTANK));
-                    break;
-                case Pojo_Class.CLASS_ROLE_HEALER:
-                    view.setBackgroundColor(ContextCompat.getColor(context, R.color.colorHEALER));
-                    break;
+        Class classVar = getItem(position);
+        if (classVar != null) {
+            classHolder.name.setText(classVar.getCl_name());
+            classHolder.role.setText(classVar.getCl_role());
+            classHolder.weapon.setText(classVar.getCl_weapon());
+
+            if (classVar.getCl_role().equals(Constants.CLASS_ROLE_DPS)) {
+                view.setBackgroundColor(ContextCompat.getColor(context, R.color.colorDPS));
+            }
+            if (classVar.getCl_role().equals(Constants.CLASS_ROLE_TANK)) {
+                view.setBackgroundColor(ContextCompat.getColor(context, R.color.colorTANK));
+            }
+            if (classVar.getCl_role().equals(Constants.CLASS_ROLE_HEALER)) {
+                view.setBackgroundColor(ContextCompat.getColor(context, R.color.colorHEALER));
             }
         }
 
@@ -73,13 +72,20 @@ public class Adapter_Class extends ArrayAdapter<Pojo_Class> {
 
     @Nullable
     @Override
-    public Pojo_Class getItem(int position) {
+    public Class getItem(int position) {
         return super.getItem(position);
     }
 
-    private class ClassHolder {
+    static class ClassHolder {
+        @BindView(R.id.adapterClass_name)
         TextView name;
+        @BindView(R.id.adapterClass_role)
         TextView role;
+        @BindView(R.id.adapterClass_weapon)
         TextView weapon;
+
+        ClassHolder(View v) {
+            ButterKnife.bind(this, v);
+        }
     }
 }
